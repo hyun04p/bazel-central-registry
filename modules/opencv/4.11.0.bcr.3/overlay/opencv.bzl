@@ -30,11 +30,12 @@ _KNOWN_OPTS = [
 CONFIG = {
     "modules": [
         "calib3d",
-        "core",  # lacks
+        "core", # lacks
         "features2d",
-        "flann",  # lacks
+        "flann", # lacks
         "imgcodecs",
         "imgproc",
+        "videoio",
     ],
     "stub_opencl": [
         "core",
@@ -47,15 +48,60 @@ CONFIG = {
         "imgcodecs",
         "features2d",
         "calib3d",
-    ],
+        "videoio",
+    ]
 }
+
+VIDEOIO_SRCS = {
+    "core": [
+        "/src/videoio_registry.cpp",
+        "/src/videoio_c.cpp",
+        "/src/cap.cpp",
+        "/src/cap_images.cpp",
+        "/src/cap_mjpeg_encoder.cpp",
+        "/src/cap_mjpeg_decoder.cpp",
+        "/src/backend_plugin.cpp",
+        "/src/backend_static.cpp",
+        "/src/container_avi.cpp",
+    ],
+    "ffmpeg": [
+        ""
+    ],
+    "avfoundation_mac": [
+        "/src/cap_avfoundation_mac.mm"
+    ],
+    "avfoundation": [
+        "/src/cap_avfoundation.mm"
+    ],
+    "gstreamer": [
+        "/src/cap_gstreamer.cpp",
+    ]
+}
+
+def _get_module_source(
+        prefix,
+        module_name,
+        module_opts = {}
+    ):
+    if module_name == "videoio":
+        videoio_srcs = [prefix + src for src in VIDEOIO_SRCS["core"]]
+        if "videoio_backend" not in module_opts:
+            return videoio_srcs
+
+        for backend in module_opts["videoio_backend"]:
+            videoio_srcs = videoio_srcs + [prefix + src for src in VIDEOIO_SRCS[backend]]
+        return videoio_srcs
+    else:
+        return [prefix + "/src/**/*.cpp", prefix + "/src/**/*.hpp"]
 
 def opencv_module(
         name,
         dispatched_files = {},
         deps = [],
         copts = [],
-        **kwargs):
+        linkopts = [],
+        module_opts = {},
+    ):
     """
     Creates a Bazel rule for an OpenCV module.
 
@@ -64,7 +110,7 @@ def opencv_module(
         dispatched_files: A mapping of keys to a list of operators.
         deps: A list of dependencies for the module.
         copts: Additional compiler options.
-        **kwargs: Additional arguments passed to the main cc_library target.
+        linkopts: Additional linker options.
     """
     prefix = "modules/{}".format(name)
     dispatched_files = dispatched_files
@@ -124,7 +170,7 @@ def opencv_module(
             }),
             out = simd_declarations,
         )
-    glob_srcs = [prefix + "/src/**/*.cpp", prefix + "/src/**/*.hpp"]
+    glob_srcs = _get_module_source(prefix, name, module_opts)
     if name in CONFIG["contains_src_headers"]:
         glob_srcs.append(prefix + "/src/**/*.h")
     cc_library(
@@ -177,5 +223,5 @@ def opencv_module(
                         "-mavx2",
                     ],
                 }),
-        **kwargs
+        linkopts = linkopts,
     )

@@ -375,3 +375,15 @@ opencv_module(
         "@libpng",
     ],
 )
+
+opencv_module(
+    name = "videoio",
+    deps = [
+        ":core",
+        ":imgproc",
+        ":imgcodecs",
+    ],
+    module_opts = {
+        "videoio_backend": ["gstreamer"],
+    },
+)
