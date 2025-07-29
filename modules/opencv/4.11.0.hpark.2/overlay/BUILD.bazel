@@ -368,5 +368,7 @@ opencv_module(
 
 opencv_module(
     name = "videoio",
-    deps = []
+    deps = [
+        ":core",
+    ]
 )
