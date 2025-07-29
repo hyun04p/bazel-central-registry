@@ -371,5 +371,6 @@ opencv_module(
     name = "videoio",
     deps = [
         ":core",
+        ":imgproc",
     ]
 )
