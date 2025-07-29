@@ -48,6 +48,7 @@ CONFIG = {
         "imgcodecs",
         "features2d",
         "calib3d",
+        "videoio",
     ]
 }
 
