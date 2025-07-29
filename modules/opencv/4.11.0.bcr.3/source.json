@@ -5,6 +5,6 @@
     "overlay": {
         "BUILD.bazel": "sha256-QuSP2db7OnqV4wi6SNdcvOEGoAYVVf1DVb9fjHqk94Q=",
         "MODULE.bazel": "sha256-bQFtm0iZUVEcDEhHqS5+EwBvpu2PDKj6rPENf+EE+ko=",
-        "opencv.bzl": "sha256-0nclMvwTkuYCYmPIFDIBkEYZlCoSWvjyVaaIwwzwEx="
+        "opencv.bzl": "sha256-0nclMvwTkuYCYmPIFDIBkEYZlCoSWvjyVaaIwwzwEx8="
     }
 }
