@@ -35,6 +35,7 @@ CONFIG = {
         "flann", # lacks
         "imgcodecs",
         "imgproc",
+        "videoio",
     ],
     "stub_opencl": [
         "core",
