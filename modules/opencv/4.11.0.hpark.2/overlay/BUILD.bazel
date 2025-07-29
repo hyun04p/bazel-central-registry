@@ -365,3 +365,8 @@ opencv_module(
         "@libpng",
     ],
 )
+
+opencv_module(
+    name = "videoio",
+    deps = []
+)
