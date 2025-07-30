@@ -372,5 +372,6 @@ opencv_module(
     deps = [
         ":core",
         ":imgproc",
+        ":imgcodecs",
     ],
 )
