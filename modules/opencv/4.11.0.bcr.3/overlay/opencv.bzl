@@ -52,6 +52,11 @@ CONFIG = {
     ]
 }
 
+def _get_module_source(
+        prefix
+    ):
+    return [prefix + "/src/**/*.cpp", prefix + "/src/**/*.hpp"]
+
 def opencv_module(
         name,
         dispatched_files = {},
@@ -127,7 +132,7 @@ def opencv_module(
             }),
             out = simd_declarations,
         )
-    glob_srcs = [prefix + "/src/**/*.cpp", prefix + "/src/**/*.hpp"]
+    glob_srcs = _get_module_source(prefix)
     if name in CONFIG["contains_src_headers"]:
         glob_srcs.append(prefix + "/src/**/*.h")
     cc_library(
