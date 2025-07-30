@@ -76,11 +76,15 @@ def _get_module_source(
     ):
     if module_name == "videoio":
         videoio_srcs = [prefix + src for src in VIDEOIO_SRCS["core"]]
+        if "videoio_backend" not in module_opts:
+            return videoio_srcs
+            
         for backend in module_opts["videoio_backend"]:
             videoio_srcs = videoio_srcs + [prefix + src for src in VIDEOIO_SRCS[backend]]
+        return videoio_srcs
     else:
         return [prefix + "/src/**/*.cpp", prefix + "/src/**/*.hpp"]
-        
+
 def opencv_module(
         name,
         dispatched_files = {},
