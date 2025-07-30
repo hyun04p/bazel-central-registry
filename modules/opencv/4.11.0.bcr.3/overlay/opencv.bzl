@@ -66,6 +66,12 @@ VIDEOIO_SRCS = {
     ],
     "ffmpeg": [
         ""
+    ],
+    "avfoundation_mac": [
+        "/src/cap_avfoundation_mac.mm"
+    ],
+    "avfoundation": [
+        "/src/cap_avfoundation.mm"
     ]
 }
 
@@ -78,7 +84,7 @@ def _get_module_source(
         videoio_srcs = [prefix + src for src in VIDEOIO_SRCS["core"]]
         if "videoio_backend" not in module_opts:
             return videoio_srcs
-            
+
         for backend in module_opts["videoio_backend"]:
             videoio_srcs = videoio_srcs + [prefix + src for src in VIDEOIO_SRCS[backend]]
         return videoio_srcs
