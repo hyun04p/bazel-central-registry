@@ -52,17 +52,42 @@ CONFIG = {
     ]
 }
 
-def _get_module_source(
-        prefix
-    ):
-    return [prefix + "/src/**/*.cpp", prefix + "/src/**/*.hpp"]
+VIDEOIO_SRCS = {
+    "core": [
+        "/src/videoio_registry.cpp",
+        "/src/videoio_c.cpp",
+        "/src/cap.cpp",
+        "/src/cap_images.cpp",
+        "/src/cap_mjpeg_encoder.cpp",
+        "/src/cap_mjpeg_decoder.cpp",
+        "/src/backend_plugin.cpp",
+        "/src/backend_static.cpp",
+        "/src/container_avi.cpp",
+    ],
+    "ffmpeg": [
+        ""
+    ]
+}
 
+def _get_module_source(
+        prefix,
+        module_name,
+        module_opts = {}
+    ):
+    if module_name == "videoio":
+        videoio_srcs = [prefix + src for src in VIDEOIO_SRCS["core"]]
+        for backend in module_opts["videoio_backend"]:
+            videoio_srcs = videoio_srcs + [prefix + src for src in VIDEOIO_SRCS[backend]]
+    else:
+        return [prefix + "/src/**/*.cpp", prefix + "/src/**/*.hpp"]
+        
 def opencv_module(
         name,
         dispatched_files = {},
         deps = [],
         copts = [],
         linkopts = [],
+        module_opts = {},
     ):
     """
     Creates a Bazel rule for an OpenCV module.
@@ -132,7 +157,7 @@ def opencv_module(
             }),
             out = simd_declarations,
         )
-    glob_srcs = _get_module_source(prefix)
+    glob_srcs = _get_module_source(prefix, name, module_opts)
     if name in CONFIG["contains_src_headers"]:
         glob_srcs.append(prefix + "/src/**/*.h")
     cc_library(
