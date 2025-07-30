@@ -374,7 +374,4 @@ opencv_module(
         ":imgproc",
         ":imgcodecs",
     ],
-    module_opts = {
-        "videoio_backend": ["avfoundation_mac"]
-    }
 )
