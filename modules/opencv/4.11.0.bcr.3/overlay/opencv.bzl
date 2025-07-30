@@ -72,6 +72,9 @@ VIDEOIO_SRCS = {
     ],
     "avfoundation": [
         "/src/cap_avfoundation.mm"
+    ],
+    "gstreamer": [
+        "/src/cap_gstreamer.cpp",
     ]
 }
 
