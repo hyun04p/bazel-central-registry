@@ -3,7 +3,7 @@
     "strip_prefix": "opencv-4.11.0",
     "url": "https://github.com/opencv/opencv/archive/4.11.0.tar.gz",
     "overlay": {
-        "BUILD.bazel": "sha256-2It0ysh8w//YaklwHVYn5z8GEXdhrgIoh5bdEUMLB4I=",
+        "BUILD.bazel": "sha256-PY1r5tSK+iwIAxBt3PHmxj2sSAyZdSezR8dfaL2lOFQ=",
         "MODULE.bazel": "sha256-lxqLOpXVlpHvVR00c28xDFzMFApuQ++p+5GVQcoDz6Q=",
         "opencv.bzl": "sha256-HBCHkTB1jgCyvZBxB1tH1zaKO7vkpacyaqBpravW8+E="
     }
