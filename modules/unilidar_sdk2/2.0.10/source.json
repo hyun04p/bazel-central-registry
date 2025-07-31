@@ -1,0 +1,9 @@
+{
+    "url": "https://github.com/unitreerobotics/unilidar_sdk2/archive/refs/tags/v2.0.10.tar.gz",
+    "integrity": "sha256-Ld+5XqSas+1l1JCTptbtF0ZCsuYJSCIfUbmiG7MU2Qg=",
+    "strip_prefix": "unilidar_sdk2-2.0.10",
+    "overlay": {
+        "BUILD.bazel": "sha256-riNzD8oogFC3IqMSsFUJ7s9udyHWAPWC13Uvty43U3U=",
+        "MODULE.bazel": "sha256-1nVRSV/6qGOUDkDHZh1SdwcOlieZaGBZvOtXsRyQXvU="
+    }
+}

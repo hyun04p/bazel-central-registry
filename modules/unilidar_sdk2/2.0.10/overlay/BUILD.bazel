@@ -1,0 +1,24 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "unitree_lidar_sdk",
+    srcs = select({
+        "@platforms//cpu:aarch64": ["unitree_lidar_sdk/lib/aarch64/libunilidar_sdk2.a"],
+        "@platforms//cpu:x86_64": ["unitree_lidar_sdk/lib/x86_64/libunilidar_sdk2.a"],
+        "//conditions:default": [],
+    }),
+    hdrs = glob(["unitree_lidar_sdk/include/**/*.h"]),
+    includes = ["unitree_lidar_sdk/include"],
+    copts = ["-std=c++17"],
+    deps = [
+        "@pcl//:common",
+        "@pcl//:search",
+        "@pcl//:kdtree",
+        "@pcl//:registration",
+        "@pcl//:io",
+        "@pcl//:filters",
+        
+    ],
+)
