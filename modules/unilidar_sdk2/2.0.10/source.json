@@ -3,7 +3,7 @@
     "integrity": "sha256-Ld+5XqSas+1l1JCTptbtF0ZCsuYJSCIfUbmiG7MU2Qg=",
     "strip_prefix": "unilidar_sdk2-2.0.10",
     "overlay": {
-        "BUILD.bazel": "sha256-rxK3M8QOjXjsWEpmo4TD/3ekK8/RdwrXfeyOyk4blK8=",
+        "BUILD.bazel": "sha256-+XMhfGyKFu+bRkvZUcoKKuSrhI06mbWO186zDQbw8z4=",
         "MODULE.bazel": "sha256-1nVRSV/6qGOUDkDHZh1SdwcOlieZaGBZvOtXsRyQXvU="
     }
 }
