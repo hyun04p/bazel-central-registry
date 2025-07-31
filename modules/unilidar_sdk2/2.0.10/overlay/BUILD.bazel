@@ -16,7 +16,7 @@ cc_library(
         "unitree_lidar_sdk.h",
         "unitree_lidar_sdk_config.h",
         "unitree_lidar_utilities.h",
-    ]
+    ],
     includes = ["unitree_lidar_sdk/include"],
     copts = ["-std=c++17"],
     deps = [],
